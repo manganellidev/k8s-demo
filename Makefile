@@ -8,7 +8,4 @@ build-image:
 push-image:
 	docker push $(IMAGE_NAME):$(TAG)
 
-deploy:
-	kubectl apply -f $(DEPLOYMENT_FILE)
-
 .PHONY: build-image push-image deploy
