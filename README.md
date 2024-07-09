@@ -2,6 +2,7 @@
 
 ## Prerequisites
 
+- [Go](https://go.dev/doc/install)
 - [docker desktop](https://www.docker.com/products/docker-desktop/)
 - [docker hub](https://hub.docker.com/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
