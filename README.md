@@ -74,6 +74,12 @@ kubectl config use-context xpto
 
 ```bash
 kubectl apply -f k8s/deployment.yaml
+
+# Optional: Validate it is up and running
+kubectl get pods
+
+# Optional: Config port-forward to test it
+kubectl port-forward pods/goserver-xpto 8080:8080
 ```
 
 ### Service
@@ -82,4 +88,10 @@ kubectl apply -f k8s/deployment.yaml
 
 ```bash
 kubectl apply -f k8s/service.yaml
+
+# Optional: Validate it is up and running
+kubectl get services
+
+# Optional: Config port-forward to test it
+kubectl port-forward pods/goserver-xpto 8080:80
 ```
