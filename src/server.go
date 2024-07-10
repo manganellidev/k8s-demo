@@ -3,56 +3,32 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
+	"strings"
 )
 
-var countryRegionsTimeZones = map[string]map[string]string{
-	"US": {
-		"New_York": "America/New_York",
-	},
-	"GB": {
-		"London": "Europe/London",
-	},
-	"DE": {
-		"Berlin": "Europe/Berlin",
-	},
-	"JP": {
-		"Tokyo": "Asia/Tokyo",
-	},
-	"BR": {
-		"Sao_Paulo": "America/Sao_Paulo",
-	},
-}
-
-func Time(w http.ResponseWriter, r *http.Request) {
+func Holidays(w http.ResponseWriter, r *http.Request) {
 	countryParam := r.URL.Query().Get("country")
-	regionParam := r.URL.Query().Get("region")
-	if countryParam == "" || regionParam == "" {
-		http.Error(w, "Country and region query parameters are required", http.StatusBadRequest)
+	if countryParam == "" {
+		http.Error(w, "Country query parameter is required", http.StatusBadRequest)
 		return
 	}
 
-	regions, exists := countryRegionsTimeZones[countryParam]
+	// Dummy holiday data for demonstration purposes
+	holidays := map[string][]string{
+		"US": {"Independence Day: July 4", "Thanksgiving: November 25"},
+		"GB": {"Christmas: December 25", "Boxing Day: December 26"},
+		"DE": {"Unity Day: October 3", "Christmas: December 25"},
+		"JP": {"New Year's Day: January 1", "Golden Week: April 29 - May 5"},
+		"BR": {"Carnival: February 28", "Independence Day: September 7"},
+	}
+
+	countryHolidays, exists := holidays[countryParam]
 	if !exists {
 		http.Error(w, "Invalid country code", http.StatusBadRequest)
 		return
 	}
 
-	timeZone, exists := regions[regionParam]
-	if !exists {
-		http.Error(w, "Invalid region for the specified country", http.StatusBadRequest)
-		return
-	}
-
-	location, err := time.LoadLocation(timeZone)
-	if err != nil {
-		http.Error(w, "Failed to load time zone", http.StatusInternalServerError)
-		return
-	}
-
-	currentTime := time.Now().In(location)
-
-	fmt.Fprintf(w, "Hello, it is %s in %s, %s.", currentTime.Format("Mon Jan 2 15:04:05 MST 2006"), regionParam, countryParam)
+	fmt.Fprintf(w, "Holidays in %s:\n%s", countryParam, strings.Join(countryHolidays, "\n"))
 }
 
 func Healthz(w http.ResponseWriter, r *http.Request) {
@@ -61,7 +37,7 @@ func Healthz(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/time", Time)
+	http.HandleFunc("/holidays", Holidays)
 	http.HandleFunc("/healthz", Healthz)
 	http.ListenAndServe(":8080", nil)
 }
