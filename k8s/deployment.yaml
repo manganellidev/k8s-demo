@@ -20,3 +20,6 @@ spec:
               cpu: "0.25"
           ports:
             - containerPort: 8080
+          # envFrom:
+          #   - configMapRef:
+          #       name: goserver-configmap
