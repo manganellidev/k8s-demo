@@ -40,19 +40,37 @@ make push-image REPO_NAME=xpto
 1. Create cluster
 
 ```bash
-# Only using Kind locally
+# Only on local environment
 kind create cluster --config=kind/kind.yaml --name=kyma-demo
+
+# Verify current context
+kubectl config current-context
+
+# Optional: Set target context
+kubectl config use-context xpto
 ```
 
 2. Create namespace
 
 ```bash
-kubectl create namespace kyma-demo
+kubectl create namespace dev
+
+
+# Create context for the namespace
+kubectl config view
+kubectl config set-context xpto-dev --namespace=dev --cluster=xpto --user=xpto
+
+# Verify current context
+kubectl config current-context
+
+# Optional: Set target context
+kubectl config use-context xpto
 ```
 
 ### Deployment
 
-1. Apply deployment yaml
+1. Adjust the image value with your repository name
+2. Apply deployment
 
 ```bash
 kubectl apply -f k8s/deployment.yaml
@@ -60,7 +78,7 @@ kubectl apply -f k8s/deployment.yaml
 
 ### Service
 
-1. Apply service yaml
+1. Apply service
 
 ```bash
 kubectl apply -f k8s/service.yaml
