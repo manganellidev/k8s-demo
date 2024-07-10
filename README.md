@@ -17,7 +17,10 @@
 1. Build image
 
 ```bash
-make build-image
+make build-image REPO_NAME=xpto
+
+# Optional
+docker run -p 8080:8080 xpto/kyma-demo:latest
 ```
 
 2. Login to docker hub
@@ -29,7 +32,7 @@ docker login
 2. Push image
 
 ```bash
-make push-image
+make push-image REPO_NAME=xpto
 ```
 
 ### Setup Environment
