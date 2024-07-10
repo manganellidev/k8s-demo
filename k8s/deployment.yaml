@@ -6,6 +6,7 @@ spec:
   selector:
     matchLabels:
       app: goserver
+  replicas: 1
   template:
     metadata:
       labels:
@@ -13,7 +14,7 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: xpto/kyma-demo:latest
+          image: xpto/k8s-demo:latest
           resources:
             limits:
               memory: "25Mi"

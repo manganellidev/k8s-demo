@@ -1,4 +1,4 @@
-# kyma-demo
+# k8s-demo
 
 ## Prerequisites
 
@@ -94,4 +94,18 @@ kubectl get services
 
 # Optional: Config port-forward to test it
 kubectl port-forward pods/goserver-xpto 8080:80
+```
+
+### ConfigMap
+
+1. Apply configmap
+
+```bash
+kubectl apply -f k8s/configmap.yaml
+
+# Optional: Validate it is up and running
+kubectl get configmaps
+
+# Refresh deployment with updated config values
+kubectl rollout restart deployment goserver
 ```
