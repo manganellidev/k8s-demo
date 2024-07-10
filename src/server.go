@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -38,5 +39,14 @@ func Healthz(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/holidays", Holidays)
 	http.HandleFunc("/healthz", Healthz)
-	http.ListenAndServe(":8080", nil)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Printf("Server is running on port %s\n", port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
+		fmt.Printf("Failed to start server: %s\n", err)
+	}
 }
