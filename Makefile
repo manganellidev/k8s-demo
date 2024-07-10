@@ -1,4 +1,5 @@
-IMAGE_NAME = manganellidev/kyma-demo
+REPO_NAME ?= xpto
+IMAGE_NAME = $(REPO_NAME)/kyma-demo
 TAG = latest
 DEPLOYMENT_FILE = k8s/deployment.yaml
 
