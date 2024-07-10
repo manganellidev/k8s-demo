@@ -1,0 +1,17 @@
+apiVersion: gateway.kyma-project.io/v1beta1
+kind: APIRule
+metadata:
+  name: goserver-api-rule
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  host: goserver.xpto.kyma.ondemand.com
+  service:
+    name: goserver-service
+    port: 8080
+  timeout: 360
+  rules:
+    - path: /.*
+      methods: ["GET"]
+      mutators: []
+      accessStrategies:
+        - handler: allow
