@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: goserver
+  name: public-api
 spec:
   selector:
     matchLabels:
-      app: goserver
-  replicas: 1
+      app: public-api
+  replicas: 2
   template:
     metadata:
       labels:
-        app: goserver
+        app: public-api
     spec:
       containers:
-        - name: goserver
-          image: xpto/k8s-demo:latest
+        - name: public-api
+          image: xpto/k8s-demo-public-api:latest
           resources:
             limits:
               memory: "25Mi"
@@ -23,4 +23,4 @@ spec:
             - containerPort: 8080
           # envFrom:
           #   - configMapRef:
-          #       name: goserver-configmap
+          #       name: public-api-configmap
