@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: private-api-service
+spec:
+  selector:
+    app: private-api
+  type: ClusterIP
+  ports:
+    - name: private-api-service
+      port: 80
+      targetPort: 8080
+      protocol: TCP

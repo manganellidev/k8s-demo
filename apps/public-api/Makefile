@@ -1,5 +1,5 @@
 REPO_NAME ?= xpto
-IMAGE_NAME = $(REPO_NAME)/k8s-demo
+IMAGE_NAME = $(REPO_NAME)/k8s-demo-public-api
 TAG = latest
 
 build-image:

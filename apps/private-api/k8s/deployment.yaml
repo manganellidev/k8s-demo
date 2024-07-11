@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: private-api
+spec:
+  selector:
+    matchLabels:
+      app: private-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: private-api
+    spec:
+      containers:
+        - name: private-api
+          image: xpto/k8s-demo-private-api:latest
+          resources:
+            limits:
+              memory: "25Mi"
+              cpu: "0.25"
+          ports:
+            - containerPort: 8080
+          # envFrom:
+          #   - configMapRef:
+          #       name: goserver-configmap
