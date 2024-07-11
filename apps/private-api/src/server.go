@@ -1,11 +1,43 @@
 package main
 
 import (
+	// "encoding/json"
 	"fmt"
 	"net/http"
 	"os"
 	"strings"
 )
+
+// func GetHolidays(w http.ResponseWriter, r *http.Request) {
+// 	country := r.URL.Query().Get("country")
+// 	if country == "" {
+// 		http.Error(w, "Country query parameter is required", http.StatusBadRequest)
+// 		return
+// 	}
+
+// 	resp, err := http.Get(fmt.Sprintf("http://localhost:8080/holidays?country=%s", country))
+// 	if err != nil {
+// 		http.Error(w, "Failed to get holidays", http.StatusInternalServerError)
+// 		return
+// 	}
+// 	defer resp.Body.Close()
+
+// 	if resp.StatusCode != http.StatusOK {
+// 		http.Error(w, fmt.Sprintf("Failed to get holidays: %s", resp.Status), http.StatusInternalServerError)
+// 		return
+// 	}
+
+// 	var holidays []string
+// 	if err := json.NewDecoder(resp.Body).Decode(&holidays); err != nil {
+// 		http.Error(w, "Failed to decode response", http.StatusInternalServerError)
+// 		return
+// 	}
+
+// 	w.Header().Set("Content-Type", "application/json")
+// 	if err := json.NewEncoder(w).Encode(holidays); err != nil {
+// 		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
+// 	}
+// }
 
 func Holidays(w http.ResponseWriter, r *http.Request) {
 	countryParam := r.URL.Query().Get("country")
@@ -37,6 +69,7 @@ func Healthz(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	// http.HandleFunc("/get-holidays", GetHolidays)
 	http.HandleFunc("/holidays", Holidays)
 	http.HandleFunc("/healthz", Healthz)
 
