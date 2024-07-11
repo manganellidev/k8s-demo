@@ -107,5 +107,5 @@ kubectl apply -f k8s/configmap.yaml
 kubectl get configmaps
 
 # Refresh deployment with updated config values
-kubectl rollout restart deployment goserver
+kubectl rollout restart deployment xpto
 ```
