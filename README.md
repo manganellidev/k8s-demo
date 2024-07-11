@@ -20,7 +20,7 @@
 make build-image REPO_NAME=xpto
 
 # Optional
-docker run -p 8080:8080 xpto/kyma-demo:latest
+docker run -p 8080:8080 xpto/xpto:latest
 ```
 
 2. Login to docker hub
