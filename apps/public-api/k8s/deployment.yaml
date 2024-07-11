@@ -16,6 +16,9 @@ spec:
         - name: public-api
           image: wagnermanganelli164/k8s-demo-public-api:latest
           resources:
+            requests:
+              memory: "20Mi"
+              cpu: "0.20"
             limits:
               memory: "25Mi"
               cpu: "0.25"

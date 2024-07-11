@@ -16,6 +16,9 @@ spec:
         - name: private-api
           image: xpto/k8s-demo-private-api:latest
           resources:
+            requests:
+              memory: "20Mi"
+              cpu: "0.20"
             limits:
               memory: "25Mi"
               cpu: "0.25"
