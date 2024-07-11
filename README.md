@@ -109,3 +109,20 @@ kubectl get configmaps
 # Refresh deployment with updated config values
 kubectl rollout restart deployment xpto
 ```
+
+### HorizontalPodAutoscaler (HPA)
+
+1. Apply HPA
+
+```bash
+kubectl apply -f k8s/hpa.yaml
+
+# Optional: Validate it is up and running
+kubectl get hpa
+
+# watch it every second to see the autoscaling working
+watch -n1 kubectl get hpa
+
+# trigger the load test
+kubectl run fortio --rm -it --image=fortio/fortio -- load -qps 800 -t 120s -c 70 "http://public-api-service/healthz"
+```
