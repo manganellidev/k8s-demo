@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: public-api
-          image: wagnermanganelli164/k8s-demo-public-api:latest
+          image: xpto/k8s-demo-public-api:latest
           resources:
             requests:
               memory: "20Mi"
