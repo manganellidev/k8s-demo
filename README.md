@@ -79,7 +79,7 @@ kubectl apply -f k8s/deployment.yaml
 kubectl get pods
 
 # Optional: Config port-forward to test it
-kubectl port-forward pods/goserver-xpto 8080:8080
+kubectl port-forward pods/xpto 8080:8080
 ```
 
 ### Service
@@ -93,7 +93,7 @@ kubectl apply -f k8s/service.yaml
 kubectl get services
 
 # Optional: Config port-forward to test it
-kubectl port-forward pods/goserver-xpto 8080:80
+kubectl port-forward pods/xpto 8080:80
 ```
 
 ### ConfigMap
