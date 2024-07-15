@@ -12,6 +12,10 @@
 
 ## Demo
 
+### Final Mission
+
+![final mission](infrastructure-diagram.png)
+
 ### Build and push image
 
 1. Build image
